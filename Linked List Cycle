@@ -1,0 +1,23 @@
+from linked_list import LinkedList
+
+def detect_cycle(head):
+   if(head == None):
+       return False
+   slow_ptr = head
+   fast_ptr = head
+
+   while(fast_ptr != None and fast_ptr.next != None):
+      slow_ptr = slow_ptr.next
+      fast_ptr = fast_ptr.next.next
+
+      if (slow_ptr == fast_ptr):
+         return True
+
+   return False
+
+#Explanation: Another way to approach this problem would be to store all the nodes in a hash set. If the node that we are on is already in the hash set, then we know there is a cycle present. The problem with this approach is that the space complexity is O(n) as in the worst case, we would have to store
+#all the nodes in the set.
+
+#Time Complexity: O(n) where n is the number of nodes in the linked list.
+
+#Space Complexity: O(1) and this appraoch is optimal as we are not creating a hash set to store all the nodes.
