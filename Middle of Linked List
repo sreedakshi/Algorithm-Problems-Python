@@ -1,0 +1,16 @@
+from linked_list import LinkedList
+
+def get_middle_node(head):
+    slow_ptr = head
+    fast_ptr = head
+
+    while(fast_ptr and fast_ptr.next):
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next.next
+    return slow_ptr
+
+#Explanation: While traversing the linked list, the slow pointer will move one step forward and the fast pointer two steps forward. When the fast pointer reaches the last node or NULL, the slow pointer will point to the middle node of the linked list. 
+
+#Time Complexity: The time complexity of the solution above is O(n), where n is the number of nodes in the linked list.
+
+#Space Complexity: The space complexity of the solution is constant, that is O(1).
