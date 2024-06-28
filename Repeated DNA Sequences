@@ -1,0 +1,14 @@
+i = 0;
+j = k;
+result_set = set()
+my_set = set()
+
+while j <= (len(s)):
+    substr = s[i:j]
+    if substr in my_set:
+        result_set.add(substr)
+    else:
+        my_set.add(substr)
+    i += 1;
+    j += 1;
+return result_set
