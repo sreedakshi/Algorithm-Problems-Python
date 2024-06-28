@@ -1,3 +1,4 @@
+# Naive Approach
 i = 0;
 j = k;
 result_set = set()
@@ -12,3 +13,41 @@ while j <= (len(s)):
     i += 1;
     j += 1;
 return result_set
+
+#Time Complexity: O((n-k)*k)
+#Space Complexity: O((n-k)*k)
+
+# Optimized Approach (Sliding Window Method using Rabin-Karp Algorithm)
+def find_repeated_sequences(s, k):
+    n = len(s)
+    if n < k:
+        return set()
+
+    mapping = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
+    a = 4
+    numbers = []
+    for i in range(n):
+        numbers.append(mapping.get(s[i]))
+
+    hash_value = 0
+    hash_set = set()
+    output = set()
+
+    for i in range(n - k + 1):
+        if i == 0:
+            for j in range(k):
+                hash_value += numbers[j] * (a ** (k - j - 1))
+        else: 
+            previous_hash_value = hash_value
+            hash_value = ((previous_hash_value - numbers[i - 1] * (a ** (k - 1))) * a) + numbers[i + k - 1]
+        
+        if hash_value in hash_set:
+            output.add(s[i : i + k])
+            
+        hash_set.add(hash_value)
+
+    return output
+
+# Time Complexity: The average case time complexity of this solution is O(n), where n is the length of the input string. Therefore, the overall time complexity is O((n−k)×k) in the worst case.
+
+# Space Complexity: The space complexity of this solution is O(n).
