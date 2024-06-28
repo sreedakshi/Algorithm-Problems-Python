@@ -27,3 +27,9 @@ def palindrome(head):
         reversed_list_head = reversed_list_head.next
 
     return True
+
+# Time complexity
+# The algorithm’s time complexity is O(n), where n is the total number of nodes in the linked list.
+
+# Space complexity
+# The space complexity of the algorithm above is O(1), because it does not use any extra space in memory.
