@@ -14,3 +14,9 @@ def find_duplicate(nums):
         fast = nums[fast]
     
     return fast
+
+# Time complexity
+# The time complexity of the algorithm is O(n), where n is the length of nums. This is because, in each part of the solution, the slow pointer traverses nums just once.
+
+# Space complexity
+# The algorithm takes O(1) space complexity, since we only used constant space to store the fast and slow pointers.
