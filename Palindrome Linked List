@@ -1,0 +1,29 @@
+from linked_list import LinkedList
+
+def reverse_linked_list(slow_ptr):
+    prev = None
+    next = None
+    curr = slow_ptr
+    while curr is not None:
+        next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+    return prev
+
+def palindrome(head):
+    slow_ptr = fast_ptr = head
+    
+    while(fast_ptr and fast_ptr.next):
+        slow_ptr = slow_ptr.next
+        fast_ptr = fast_ptr.next.next
+    
+    reversed_list_head = reverse_linked_list(slow_ptr)
+    curr = head
+    while (curr != reversed_list_head and curr != slow_ptr):
+        if (curr.data != reversed_list_head.data):
+            return False
+        curr = curr.next
+        reversed_list_head = reversed_list_head.next
+
+    return True
