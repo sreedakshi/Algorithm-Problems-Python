@@ -1,0 +1,29 @@
+def insert_interval(existing_intervals, new_interval):
+
+  output = []
+
+  counter = 0
+  new_start = new_interval[0]
+  while (counter < len(existing_intervals) and existing_intervals[counter][0] <= new_start):
+      output.append(existing_intervals[counter])
+      counter += 1
+
+  if not output or output[-1][1] < new_start:
+    output.append(new_interval)
+  else:
+    output[-1][1] = max(output[-1][1],new_interval[1])
+
+  for curr_interval in range(counter, len(existing_intervals)):
+    prev_element_end = output[-1][1]
+    curr_start = existing_intervals[curr_interval][0]
+    if (curr_start <= prev_element_end):
+      output[-1][1] = max(prev_element_end,existing_intervals[curr_interval][1])
+    else:
+      output.append(existing_intervals[curr_interval])
+
+  return output
+
+# Time Complexity: O(n) as the whole input array has to be iterated through in order to compare with the new interval.
+
+# Space Complexity: O(n) as the number of intervals being added to output will be linear to the number of intervals in the input array. But the space complexity is O(1) as we only use constant space other 
+# than the input and output data structures.
