@@ -1,0 +1,20 @@
+def find_sets(intervals):
+    start = sorted([i[0] for i in intervals])
+    end = sorted([i[1] for i in intervals])
+
+    res, count = 0, 0
+    s, e = 0, 0
+    while s < len(intervals):
+        if start[s] < end[e]:
+            s+= 1
+            count += 1
+        else:
+            e += 1
+            count -= 1
+        res = max(res, count)
+    return res
+
+# Time Complexity: O(n log n) as the sorted function at to get the start and end lists are O(n log n) time functions. The while loop that goes through the length of the intervals list is O(n), but the dominant 
+# element here is the sorting function.
+
+# Space Complexity: O(n) as the start and end lists hold n elements and all the other variables use constant space.
