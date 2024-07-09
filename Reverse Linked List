@@ -1,0 +1,20 @@
+from linked_list import LinkedList
+from linked_list_node import LinkedListNode
+            
+def reverse(head):
+    prev = None
+    curr = head
+    next_node = curr.next
+
+    while(next_node):
+        curr.next = prev
+        prev = curr
+        curr = next_node
+        next_node = next_node.next
+    curr.next = prev
+    
+    return curr
+
+# Time Complexity: O(n) as the while loop traverses through all the nodes in the linked list which are n nodes.
+
+# Space Complexity: O(1) as there are no additional data structures being used and it's all in place manipulation.
