@@ -26,3 +26,7 @@ def reorder_list(head):
         second.next, second = first, second.next
     
     return head
+
+# Time Complexity: O(n) as we traverse through all the nodes in order to find the middle node and reverse the second half of the list. Also, the last while loop also goes through only half of the list elements.
+
+# Space Complexity: O(1) as the manipulation happens to the linked list in-place.
