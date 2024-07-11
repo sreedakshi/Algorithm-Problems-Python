@@ -1,23 +1,25 @@
-from linked_list import LinkedList
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
-def detect_cycle(head):
-   if(head == None):
-       return False
-   slow_ptr = head
-   fast_ptr = head
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
 
-   while(fast_ptr != None and fast_ptr.next != None):
-      slow_ptr = slow_ptr.next
-      fast_ptr = fast_ptr.next.next
+        while (fast and fast.next):
+            slow = slow.next
+            fast = fast.next.next
+            if (slow == fast):
+                return True
 
-      if (slow_ptr == fast_ptr):
-         return True
+        return False
 
-   return False
+# Explanation: The naive way to approach this problem is to use a hash map/dictionary and store all the visited nodes. If the current node is already in the map, then there is a cycle. But the optimized way
+# to appraoch this is to use fast and slow pointers. The slow pointer moves by 1 and the fast by 2. If there is a cycle they will intersect at some point as the distance between the two pointers will decrease.
+# This uses constant space instead of additional space.
 
-#Explanation: Another way to approach this problem would be to store all the nodes in a hash set. If the node that we are on is already in the hash set, then we know there is a cycle present. The problem with this approach is that the space complexity is O(n) as in the worst case, we would have to store
-#all the nodes in the set.
+# Time Complexity: O(n) as it takes only n maximum steps for them to meet.
 
-#Time Complexity: O(n) where n is the number of nodes in the linked list.
-
-#Space Complexity: O(1) and this appraoch is optimal as we are not creating a hash set to store all the nodes.
+# Space Complexity: O(1) as the only space being used is for slow and fast pointers which are constant.
