@@ -1,0 +1,15 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        first = 0
+        second = 0
+
+        for n in nums:
+            temp = first
+            first = second
+            second = max(temp + n, second)
+
+        return second
+
+#Time Complexity: O(n) as all the nums in nums are being iterated through one by one. 
+
+#Space Complexity: O(1) as there are only two vars (first and second) being used.
