@@ -1,0 +1,25 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        front = 0
+        back = 0 
+        front_2 = 0
+        back_2 = 0
+        
+        if (len(nums) == 1):
+            return nums[0]
+
+        i = 0
+        while (i < len(nums) - 1):
+            temp = front
+            front = max(back + nums[i], front)
+            back = temp
+            i += 1
+
+        i = len(nums) - 1
+        while (i > 0):
+            temp = front_2
+            front_2 = max(back_2 + nums[i], front_2)
+            back_2 = temp
+            i -= 1
+
+        return max(front, front_2)
