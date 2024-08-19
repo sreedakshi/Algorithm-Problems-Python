@@ -1,0 +1,28 @@
+class Solution(object):
+    def subdomainVisits(self, cpdomains):
+        """
+        :type cpdomains: List[str]
+        :rtype: List[str]
+        """
+
+        my_map = {}
+        result = []
+
+        for element in cpdomains:
+            x = element.split()
+            numVisits = int(x[0])
+            y = x[1]
+            numDomains = y.split(".")
+
+            for i in range(len(numDomains)):
+                domain = y.split(".", i)
+                curr_domain = domain[-1]
+                if curr_domain in my_map:
+                    my_map[curr_domain] += numVisits
+                else:
+                    my_map[curr_domain] = numVisits
+
+        for j in my_map:
+            result.append(str(my_map[j]) + " " + j)
+        
+        return result
