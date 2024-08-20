@@ -1,0 +1,22 @@
+class Solution(object):
+    def groupThePeople(self, groupSizes):
+        """
+        :type groupSizes: List[int]
+        :rtype: List[List[int]]
+        """
+        my_map = {}
+        result = []
+
+        # Populate the map with indices based on group sizes
+        for i in range(len(groupSizes)):
+            size = groupSizes[i]
+            if size not in my_map:
+                my_map[size] = []
+            my_map[size].append(i)
+        
+        # Create the groups from the map
+        for size, indices in my_map.items():
+            for i in range(0, len(indices), size):
+                result.append(indices[i:i + size])
+        
+        return result
