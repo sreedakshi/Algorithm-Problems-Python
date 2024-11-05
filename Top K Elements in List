@@ -1,0 +1,24 @@
+from heapq import heappush, heappop
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        my_map = {}
+
+        for num in nums:
+            if num in my_map:
+                my_map[num] += 1
+            else:
+                my_map[num] = 1
+
+        top_k_elements = []
+        
+        for num, frequency in my_map.items():
+            heappush(top_k_elements, (frequency, num))
+            if len(top_k_elements) > k:
+                heappop(top_k_elements)
+
+        top_numbers = []
+        while top_k_elements:
+            top_numbers.append(heappop(top_k_elements)[1])
+
+        return top_numbers
