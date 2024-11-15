@@ -1,0 +1,18 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        my_map = {}
+
+        for string in strs:
+            key = ''.join(sorted(string))
+            if key not in my_map:
+                my_map[key] = [string]
+            else:
+                my_map[key].append(string)
+        
+        result = []
+        for index, (key, value) in enumerate(my_map.items()):
+            result.append(value)
+
+        return result
+
+# Explanation: This isn't the most optimal solution, this can be improved by hashing the map in a different way by incrementing the count of each character in the string of the 26 zeroes.
