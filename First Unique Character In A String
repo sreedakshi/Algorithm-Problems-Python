@@ -1,0 +1,22 @@
+class Solution(object):
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        myMap = {}
+
+        for char in s:
+            if char in myMap:
+                myMap[char] += 1
+            else:
+                myMap[char] = 1
+        
+        for i in range(len(s)):
+            curr = s[i]
+            if myMap[curr] == 1:
+                return i
+        
+        return -1
+
+#Explanation: Hash map is best for this situation because we can access from the hasmap in O(1) time for search. 
