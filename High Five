@@ -1,0 +1,28 @@
+class Solution(object):
+    def highFive(self, items):
+        """
+        :type items: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        myMap = {}
+        result = []
+
+        for item in items:
+            studentId = item[0]
+            score = item[1]
+
+            if studentId in myMap:
+                myMap[studentId].append(score)
+            else:
+                myMap[studentId] = [score]
+        
+        for key, value in myMap.items():
+            value.sort(reverse=True)
+            top5 = value[:5]
+            average = sum(top5) // 5
+            result.append([key, average])
+
+        # Sort result by student id
+        result.sort()
+
+        return result
